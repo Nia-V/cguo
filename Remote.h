@@ -6,7 +6,13 @@
 unsigned long res;
 unsigned long fres;
 String button;
-String RemRun(){
+int delta;
+int modul=0;
+int a;
+int x;
+int y;
+int z;
+void RemRun(){
   
  if (IrReceiver.decode()) {
     res = IrReceiver.decodedIRData.decodedRawData; // Print "old" raw data
@@ -32,50 +38,60 @@ switch (fres) {       // if results.value is equal to....
         break;
       case 3910598400:
         Serial.println("0");
-        button = "0";
+        delta = 0;
+        modul++;
         break;
       case 4077715200:
         Serial.println("1");
-      button = "1";
+      delta = 1;
+      modul++;
         break;
       case 3877175040:
         Serial.println("2");
-        button = "2";
+        delta = 2;
+        modul++;
         break;
       case 2707357440:
         Serial.println("3");
-        button = "3";
+        delta = 3;
+        modul++;
         break;
       case 4144561920:
         Serial.println("4");
-        button = "4";
+        delta = 4;
+        modul++;
         break;
       case 3810328320:
         Serial.println("5");
-        button = "5";
+        delta = 5;
+        modul++;
         break;
       case 2774204160:
       Serial.println("6");
-        button = "6";
-
+        delta = 6;
+        modul++;
         break;
       case 3175284480:
         Serial.println("7");
-        button = "7";
+        delta = 7;
+        modul++;
         break;
       case 2907897600:
         Serial.println("8");
-          button = "8";
+          delta = 8;
+          modul++;
         break;
       case 3041591040:
         Serial.println("9");
-        button = "9";
+        delta = 9;
+        modul++;
         break;
          case 3208707840:
         Serial.println("play");
         button = "PLAY";
-        fres = 0;
-        res = 0;
+  fres=0;
+  res=0;
+          modul++;
         break;   // if results.value is equal to....
       case 3108437760:             //the VOL + button then...
         Serial.println("VOL+");  // Serial print Vol +
@@ -109,5 +125,20 @@ switch (fres) {       // if results.value is equal to....
        
         break; 
 }}
+
+if (modul != 0) {
+    if (modul % 4 == 0) {
+      x = delta;
+    }
+    if (modul % 4 == 1) {
+      y = delta;
+    }
+    if (modul % 4 == 2) {
+      z = delta;
+    }
+    if (modul % 4 == 3) {
+      a = delta;
+    }
+  }
 }
 #endif

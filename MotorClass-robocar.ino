@@ -9,12 +9,6 @@ int D4 = A2;
 int latch = 11; 
 int clock = 12; 
 int data= 13; 
-int delta;
-int modul = 0;
-int a;
-int x;
-int y;
-int z;
 int servo = 90;
 bool s = 0;
 bool r = 0;  // Declaring Bool variable named r set to 0
@@ -55,45 +49,28 @@ Serial.begin(9600);
 void loop() {
   my7.display(x,y,z,a);
     myservo.write(servo);
-  
+  RemRun();
 
   if (button == ">>|") {  //if r is equal to 1
       Car.Right(50);  //Move right at speed 100
     }
-    if (button == "|<<") {    //if u is equal to 1
+    if (button == "VOL+") {    //if u is equal to 1
       Car.Forwards(50);  //Move forward at speed 100
     }
-    if (button == "") {  //if l is equal to 1
+    if (button == "|<<") {  //if l is equal to 1
       Car.Left(50);   //Move left at speed 100
     }
-    if (d == 1) {     //if d is equal to 1
+    if (button == "VOL-") {     //if d is equal to 1
       Car.Backwards(50);  //Move backward at speed 100
     } 
-    if(ri == 1 &&le == 0){
+    if(button == "^^"){
     Serial.println("ri");
     servo = 180;
      }
-     if(le == 1 && ri ==0){
+     if(button == "vv"){
     Serial.println("le");
     servo = 0;}
-  if (s ==1){
+  if (button == "ON/OFF"){
       Car.STOP();
       servo = 90;}
-
-
-
-  if (modul != 0) {
-    if (modul % 4 == 0) {
-      x = delta;
-    }
-    if (modul % 4 == 1) {
-      y = delta;
-    }
-    if (modul % 4 == 2) {
-      z = delta;
-    }
-    if (modul % 4 == 3) {
-      a = delta;
-    }
-  }
 }
